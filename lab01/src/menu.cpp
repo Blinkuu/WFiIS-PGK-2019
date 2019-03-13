@@ -110,9 +110,9 @@ void Menu::run_event(const sf::Event& e, sf::Window& win) {
             {
                 m_Mode = Mode::READ_FROM_FILE;
                 m_ButtonPressed = L"o";
-                sf::Texture tex = FileManager::read_from_file("Result.png");
+                sf::Sprite* spr = FileManager::read_from_file("Result.png");
                 Canvas::clear_render_queue();
-                Canvas::push_sprite_to_render_queue(new sf::Sprite(tex));
+                Canvas::push_sprite_to_render_queue(spr);
             }
                 break;
             case sf::Keyboard::Escape:

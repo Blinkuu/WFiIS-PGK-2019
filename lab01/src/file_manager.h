@@ -10,6 +10,8 @@
 class FileManager {
 public:
     static void save_to_file(const std::vector<sf::Drawable*>& vec);
-    static sf::Texture read_from_file(const std::string& filepath);
+    static sf::Sprite* read_from_file(const std::string& filepath);
+public:
+    static sf::Texture* m_TexturePtr;
 };
 
