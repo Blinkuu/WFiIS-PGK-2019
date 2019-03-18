@@ -17,7 +17,7 @@ HSVCircle::HSVCircle()
     for(unsigned j = 0; j < m_TexSize; ++j)
         for(unsigned i = 0; i < m_TexSize; ++i)
         {
-            sf::Vector2f radiusVec{static_cast<float>(i) - circleCenter.x, static_cast<float>(j) - circleCenter.y};
+            sf::Vector2f radiusVec{i - circleCenter.x, j - circleCenter.y};
             float h = fmodf(atan2f(radiusVec.x, radiusVec.y) * 180.0f / static_cast<float>(M_PI) + 270.0f, 360.0f) / 360.0f;
             float s = sqrtf(radiusVec.x * radiusVec.x + radiusVec.y * radiusVec.y) / radiusMax;
             float v = 1.0f - Slider::GetSliderValue();
@@ -87,8 +87,8 @@ void HSVCircle::convert(std::array<float, 3>& dest, const std::array<float, 3>& 
         if(h == 6.0f) h = 0;
         int i = static_cast<int>(h);
         float var_1 = hsv[2] * (1.0f - hsv[1]);
-        float var_2 = hsv[2] * (1.0f - hsv[1] * (h - static_cast<float>(i)));
-        float var_3 = hsv[2] * (1.0f - hsv[1] * (1.0f - (h - static_cast<float>(i))));
+        float var_2 = hsv[2] * (1.0f - hsv[1] * (h - i));
+        float var_3 = hsv[2] * (1.0f - hsv[1] * (1.0f - (h - i)));
 
         float var_r;
         float var_g;

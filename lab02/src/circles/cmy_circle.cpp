@@ -53,5 +53,5 @@ void CMYCircle::Update()
             m_ColorPixels[4 * (j * m_TexSize + i) + 2] = static_cast<sf::Uint8>(y);
 
     m_Texture->update(m_ColorPixels);
-    m_TextValue.setString("Y: " + std::to_string(static_cast<unsigned>(100 * y)) + "%");
+    m_TextValue.setString("Y: " + std::to_string(static_cast<unsigned>(100.0f - 100.0f * y / 255.0f)) + "%");
 }

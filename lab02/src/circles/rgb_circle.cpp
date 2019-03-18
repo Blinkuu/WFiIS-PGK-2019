@@ -53,5 +53,5 @@ void RGBCircle::Update()
             m_ColorPixels[4 * (j * m_TexSize + i) + 2] = static_cast<sf::Uint8>(255.0f - b);
 
     m_Texture->update(m_ColorPixels);
-    m_TextValue.setString("B: " + std::to_string(static_cast<unsigned>(255 * b)));
+    m_TextValue.setString("B: " + std::to_string(static_cast<unsigned>(255.0f - b)));
 }

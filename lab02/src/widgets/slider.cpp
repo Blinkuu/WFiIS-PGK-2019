@@ -74,9 +74,9 @@ bool Slider::UpdateSlider()
 {
     const std::pair<float, float>& mousePos = InputManager::GetMouseButtonPressedPosition();
 
-    if((mousePos.first > static_cast<float>(m_OffsetX) && mousePos.first < static_cast<float>(m_OffsetX + m_SizeX)) && (mousePos.second > static_cast<float>(m_OffsetY) && mousePos.second < static_cast<float>(m_SizeY + m_OffsetY)))
+    if((mousePos.first > m_OffsetX && mousePos.first < m_OffsetX + m_SizeX) && (mousePos.second > m_OffsetY && mousePos.second < m_SizeY + m_OffsetY))
     {
-        float a = mousePos.second - static_cast<float>(m_OffsetY - 1) / static_cast<float>(m_SizeY - 2);
+        float a = static_cast<float>(mousePos.second - m_OffsetY - 1) / static_cast<float>(m_SizeY - 2);
         m_CurrentSliderValue = 1.0f - a;
         m_Line1[0].position = sf::Vector2f(static_cast<float>(m_OffsetX) - 15.0f, mousePos.second);
         m_Line1[1].position = sf::Vector2f(static_cast<float>(m_OffsetX) - 5.0f, mousePos.second);

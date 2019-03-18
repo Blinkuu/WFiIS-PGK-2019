@@ -12,8 +12,7 @@ add_compile_options(
             -Wpedantic -Wconversion -Wnull-dereference
             -Wdouble-promotion -Wduplicated-cond
             -Wduplicated-branches
-            -Wlogical-op -fsanitize=leak
-            -fno-omit-frame-pointer)
+            -Wlogical-op -fsanitize=leak)
 
 include_directories(src)
 include_directories(src/circles)

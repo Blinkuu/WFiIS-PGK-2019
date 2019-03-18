@@ -11,13 +11,13 @@
 
 HSLCircle::HSLCircle()
 {
-    sf::Vector2f circleCenter{static_cast<float>(m_TexSize) / 2.0f, static_cast<float>(m_TexSize) / 2.0f};
-    float radiusMax = static_cast<float>(m_TexSize) * sqrtf(2.0f) / 2.8f;
+    sf::Vector2f circleCenter{m_TexSize / 2.0f, m_TexSize / 2.0f};
+    float radiusMax = m_TexSize * sqrtf(2.0f) / 2.8f;
 
     for(unsigned j = 0; j < m_TexSize; ++j)
         for(unsigned i = 0; i < m_TexSize; ++i)
         {
-            sf::Vector2f radiusVec{static_cast<float>(i) - circleCenter.x, static_cast<float>(j) - circleCenter.y};
+            sf::Vector2f radiusVec{i - circleCenter.x, j - circleCenter.y};
             float h = fmodf(atan2f(radiusVec.x, radiusVec.y) * 180.0f / static_cast<float>(M_PI) + 270.0f, 360.0f);
             float s = sqrtf(radiusVec.x * radiusVec.x + radiusVec.y * radiusVec.y) / radiusMax;
             float l = 1.0f - Slider::GetSliderValue();
@@ -80,29 +80,29 @@ void HSLCircle::convert(std::array<float, 3>& dest, const std::array<float, 3>& 
     float X = C * ( 1.0f - fabsf(fmodf(col[0] * 0.016666f, 2.0f) - 1.0f));
     float m = col[2] - C / 2.0f;
 
-    if (col[0] < 60.0f) {
-        dest[0] = ( C + m ) * 255.0f;
-        dest[1] = ( X + m ) * 255.0f;
-        dest[2] = ( 0 + m ) * 255.0f;
-    } else if (col[0] < 120.0f) {
-        dest[0] = ( X + m ) * 255.0f;
-        dest[1] = ( C + m ) * 255.0f;
-        dest[2] = ( 0 + m ) * 255.0f;
-    } else if (col[0] < 180.0f) {
-        dest[0] = ( 0 + m ) * 255.0f;
-        dest[1] = ( C + m ) * 255.0f;
-        dest[2] = ( X + m ) * 255.0f;
-    } else if (col[0] < 240.0f) {
-        dest[0] = ( 0 + m ) * 255.0f;
-        dest[1] = ( X + m ) * 255.0f;
-        dest[2] = ( C + m ) * 255.0f;
-    } else if (col[0] < 300.0f) {
-        dest[0] = ( X + m ) * 255.0f;
-        dest[1] = ( 0 + m ) * 255.0f;
-        dest[2] = ( C + m ) * 255.0f;
+    if (col[0] < 60) {
+        dest[0] = ( C + m ) * 255;
+        dest[1] = ( X + m ) * 255;
+        dest[2] = ( 0 + m ) * 255;
+    } else if (col[0] < 120) {
+        dest[0] = ( X + m ) * 255;
+        dest[1] = ( C + m ) * 255;
+        dest[2] = ( 0 + m ) * 255;
+    } else if (col[0] < 180) {
+        dest[0] = ( 0 + m ) * 255;
+        dest[1] = ( C + m ) * 255;
+        dest[2] = ( X + m ) * 255;
+    } else if (col[0] < 240) {
+        dest[0] = ( 0 + m ) * 255;
+        dest[1] = ( X + m ) * 255;
+        dest[2] = ( C + m ) * 255;
+    } else if (col[0] < 300) {
+        dest[0] = ( X + m ) * 255;
+        dest[1] = ( 0 + m ) * 255;
+        dest[2] = ( C + m ) * 255;
     } else {
-        dest[0] = ( C + m ) * 255.0f;
-        dest[1] = ( 0 + m ) * 255.0f;
-        dest[2] = ( X + m ) * 255.0f;
+        dest[0] = ( C + m ) * 255;
+        dest[1] = ( 0 + m ) * 255;
+        dest[2] = ( X + m ) * 255;
     }
 }

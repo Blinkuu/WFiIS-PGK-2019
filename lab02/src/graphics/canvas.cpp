@@ -26,7 +26,7 @@ void Canvas::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates sta
 
 void Canvas::UpdateCanvas() const
 {
-    if(m_Slider.UpdateSlider() && fabs(m_FormerSliderValue - Slider::GetSliderValue()) > 0.01)
+    if(m_Slider.UpdateSlider() && fabs(m_FormerSliderValue - Slider::GetSliderValue()) > 0.0005)
     {
         m_FormerSliderValue = Slider::GetSliderValue();
         m_HSLCircle.Update();
