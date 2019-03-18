@@ -33,7 +33,7 @@ void Window::RunEvents()
         {
             if (event.mouseButton.button == sf::Mouse::Left)
             {
-                InputManager::SetMouseButtonPressedPosition(event.mouseButton.x, event.mouseButton.y);
+                InputManager::SetMouseButtonPressedPosition(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
                 InputManager::SetMouseButtonDown(true);
                 m_Canvas.UpdateCanvas();
             }
@@ -45,7 +45,7 @@ void Window::RunEvents()
     }
 
     if(InputManager::GetMouseButtonDown()) {
-        InputManager::SetMouseButtonPressedPosition(event.mouseMove.x, event.mouseMove.y);
+        InputManager::SetMouseButtonPressedPosition(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y));
     }
 }
 

@@ -18,12 +18,10 @@ void InputManager::SetMouseButtonDown(bool isDown)
     m_MouseButtonDown = isDown;
 }
 
-std::pair<float, float> InputManager::GetMouseButtonPressedPosition()
+const std::pair<float, float>& InputManager::GetMouseButtonPressedPosition()
 {
     return m_MouseButtonPressedPos;
 }
-
-
 
 bool InputManager::GetMouseButtonDown()
 {

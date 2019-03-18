@@ -12,7 +12,7 @@ public:
     static void SetMouseButtonPressedPosition(float x, float y);
     static void SetMouseButtonDown(bool isDown);
 
-    static std::pair<float, float> GetMouseButtonPressedPosition();
+    static const std::pair<float, float>& GetMouseButtonPressedPosition();
     static bool GetMouseButtonDown();
 
 private:

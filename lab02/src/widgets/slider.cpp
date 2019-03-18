@@ -18,18 +18,18 @@ Slider::Slider()
     , m_OffsetY(25)
 {
 
-    m_Line1[0].position = sf::Vector2f(m_OffsetX - 15.0f, m_OffsetY);
+    m_Line1[0].position = sf::Vector2f(static_cast<float>(m_OffsetX) - 15.0f, static_cast<float>(m_OffsetY));
     m_Line1[0].color = sf::Color::Black;
-    m_Line1[1].position = sf::Vector2f(m_OffsetX - 5.0f, m_OffsetY);
+    m_Line1[1].position = sf::Vector2f(static_cast<float>(m_OffsetX) - 5.0f, static_cast<float>(m_OffsetY));
     m_Line1[1].color = sf::Color::Black;
 
-    m_Line2[0].position = sf::Vector2f(m_OffsetX + m_SizeX + 5.0f, m_OffsetY);
+    m_Line2[0].position = sf::Vector2f(static_cast<float>(m_OffsetX + m_SizeX) + 5.0f, static_cast<float>(m_OffsetY));
     m_Line2[0].color = sf::Color::Black;
-    m_Line2[1].position = sf::Vector2f(m_OffsetX + m_SizeX + 15.0f, m_OffsetY);
+    m_Line2[1].position = sf::Vector2f(static_cast<float>(m_OffsetX + m_SizeX) + 15.0f, static_cast<float>(m_OffsetY));
     m_Line2[1].color = sf::Color::Black;
 
-    m_Bar.setSize(sf::Vector2f(m_SizeX, m_SizeY));
-    m_Bar.setPosition(m_OffsetX, m_OffsetY);
+    m_Bar.setSize(sf::Vector2f(static_cast<float>(static_cast<float>(m_SizeX)), static_cast<float>(m_SizeY)));
+    m_Bar.setPosition(static_cast<float>(m_OffsetX), static_cast<float>(m_OffsetY));
     m_Bar.setOutlineColor(sf::Color::Black);
     m_Bar.setOutlineThickness(1.0f);
 
@@ -63,7 +63,7 @@ Slider::~Slider()
     delete m_Texture;
 }
 
-void Slider::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Slider::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates states) const
 {
     target.draw(m_Line1);
     target.draw(m_Line2);
@@ -72,16 +72,16 @@ void Slider::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 bool Slider::UpdateSlider()
 {
-    std::pair<float, float> mousePos = InputManager::GetMouseButtonPressedPosition();
+    const std::pair<float, float>& mousePos = InputManager::GetMouseButtonPressedPosition();
 
-    if((mousePos.first > m_OffsetX && mousePos.first < m_OffsetX + m_SizeX) && (mousePos.second > m_OffsetY && mousePos.second < m_SizeY + m_OffsetY))
+    if((mousePos.first > static_cast<float>(m_OffsetX) && mousePos.first < static_cast<float>(m_OffsetX + m_SizeX)) && (mousePos.second > static_cast<float>(m_OffsetY) && mousePos.second < static_cast<float>(m_SizeY + m_OffsetY)))
     {
-        float a = static_cast<float>(mousePos.second - m_OffsetY - 1) / static_cast<float>(m_SizeY - 2);
+        float a = mousePos.second - static_cast<float>(m_OffsetY - 1) / static_cast<float>(m_SizeY - 2);
         m_CurrentSliderValue = 1.0f - a;
-        m_Line1[0].position = sf::Vector2f(m_OffsetX - 15.0f, mousePos.second);
-        m_Line1[1].position = sf::Vector2f(m_OffsetX - 5.0f, mousePos.second);
-        m_Line2[0].position = sf::Vector2f(m_OffsetX + m_SizeX + 5.0f, mousePos.second);
-        m_Line2[1].position = sf::Vector2f(m_OffsetX + m_SizeX + 15.0f, mousePos.second);
+        m_Line1[0].position = sf::Vector2f(static_cast<float>(m_OffsetX) - 15.0f, mousePos.second);
+        m_Line1[1].position = sf::Vector2f(static_cast<float>(m_OffsetX) - 5.0f, mousePos.second);
+        m_Line2[0].position = sf::Vector2f(static_cast<float>(m_OffsetX + m_SizeX) + 5.0f, mousePos.second);
+        m_Line2[1].position = sf::Vector2f(static_cast<float>(m_OffsetX + m_SizeX) + 15.0f, mousePos.second);
         return true;
     }
     return false;

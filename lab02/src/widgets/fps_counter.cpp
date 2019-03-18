@@ -22,7 +22,7 @@ FPSCounter::FPSCounter()
     m_Text.setPosition(m_OffsetX, m_OffsetY);
 }
 
-void FPSCounter::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void FPSCounter::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates states) const
 {
     m_Text.setString("FPS: " + std::to_string(m_FPS));
     target.draw(m_Text);

@@ -6,6 +6,8 @@
 #include "canvas.hpp"
 #include "input_manager.hpp"
 
+float Canvas::m_FormerSliderValue = 1.0f;
+
 void Canvas::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates states) const
 {
     if(InputManager::GetMouseButtonDown()) {
@@ -24,8 +26,9 @@ void Canvas::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates sta
 
 void Canvas::UpdateCanvas() const
 {
-    if(m_Slider.UpdateSlider())
+    if(m_Slider.UpdateSlider() && fabs(m_FormerSliderValue - Slider::GetSliderValue()) > 0.01)
     {
+        m_FormerSliderValue = Slider::GetSliderValue();
         m_HSLCircle.Update();
         m_HSVCircle.Update();
         m_RGBCircle.Update();

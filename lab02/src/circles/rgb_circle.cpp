@@ -9,13 +9,13 @@
 
 RGBCircle::RGBCircle()
 {
-    sf::Vector2 circleCenter{m_TexSize / 2.0f, m_TexSize / 2.0f};
+    sf::Vector2 circleCenter{static_cast<float>(m_TexSize) / 2.0f, static_cast<float>(m_TexSize) / 2.0f};
     float radiusMax = static_cast<float>(m_TexSize) * sqrtf(2.0f) / 2.8f;
 
     for(unsigned i = 0; i < m_TexSize; ++i)
         for(unsigned j = 0; j < m_TexSize; ++j)
         {
-            sf::Vector2f radiusVec{i - circleCenter.x, j - circleCenter.y};
+            sf::Vector2f radiusVec{static_cast<float>(i) - circleCenter.x, static_cast<float>(j) - circleCenter.y};
 
             float r = 255.0f * (1.0f - sqrtf(radiusVec.x * radiusVec.x + radiusVec.y * radiusVec.y) / radiusMax);
             float g = 255.0f * ((180.0f * atan2f(radiusVec.y, radiusVec.x) / static_cast<float>(M_PI)) + 361.0f) / 360.0f;
@@ -47,12 +47,11 @@ void RGBCircle::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates 
 
 void RGBCircle::Update()
 {
+    float b = 255.0f * Slider::GetSliderValue();
     for(unsigned i = 0; i < m_TexSize; ++i)
         for(unsigned j = 0; j < m_TexSize; ++j)
-        {
-            float b = 255.0f * Slider::GetSliderValue();
             m_ColorPixels[4 * (j * m_TexSize + i) + 2] = static_cast<sf::Uint8>(255.0f - b);
-        }
+
     m_Texture->update(m_ColorPixels);
-    m_TextValue.setString("B: " + std::to_string(static_cast<unsigned>(255 * (1.0f - Slider::GetSliderValue()))));
+    m_TextValue.setString("B: " + std::to_string(static_cast<unsigned>(255 * b)));
 }

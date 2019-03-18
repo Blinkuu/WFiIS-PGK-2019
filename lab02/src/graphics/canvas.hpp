@@ -29,4 +29,6 @@ private:
     mutable HSVCircle m_HSVCircle;
     mutable RGBCircle m_RGBCircle;
     mutable CMYCircle m_CMYCircle;
+private:
+    static float m_FormerSliderValue;
 };

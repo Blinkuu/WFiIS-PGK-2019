@@ -17,7 +17,7 @@ HSVCircle::HSVCircle()
     for(unsigned j = 0; j < m_TexSize; ++j)
         for(unsigned i = 0; i < m_TexSize; ++i)
         {
-            sf::Vector2f radiusVec{i - circleCenter.x, j - circleCenter.y};
+            sf::Vector2f radiusVec{static_cast<float>(i) - circleCenter.x, static_cast<float>(j) - circleCenter.y};
             float h = fmodf(atan2f(radiusVec.x, radiusVec.y) * 180.0f / static_cast<float>(M_PI) + 270.0f, 360.0f) / 360.0f;
             float s = sqrtf(radiusVec.x * radiusVec.x + radiusVec.y * radiusVec.y) / radiusMax;
             float v = 1.0f - Slider::GetSliderValue();
@@ -54,12 +54,12 @@ void HSVCircle::draw(sf::RenderTarget& target, [[maybe_unused]]sf::RenderStates 
 
 void HSVCircle::Update()
 {
+    m_HSV[2] = 1.0f - Slider::GetSliderValue();
     for(unsigned j = 0; j < m_TexSize; ++j)
         for(unsigned i = 0; i < m_TexSize; ++i)
         {
             m_HSV[0] = m_TanSqrtArray[2 * (j * m_TexSize + i) + 0];
             m_HSV[1] = m_TanSqrtArray[2 * (j * m_TexSize + i) + 1];
-            m_HSV[2] = 1.0f - Slider::GetSliderValue();
 
             convert(m_RGB, m_HSV);
 
@@ -68,8 +68,9 @@ void HSVCircle::Update()
             m_ColorPixels[4 * (j * m_TexSize + i) + 2] = static_cast<sf::Uint8>(m_RGB[2]);
         }
     m_Texture->update(m_ColorPixels);
+
     std::stringstream stream;
-    stream << std::fixed << std::setprecision(3) << 1.0f - Slider::GetSliderValue();
+    stream << std::fixed << std::setprecision(3) << m_HSV[2];
     m_TextValue.setString("L=" + stream.str());
 }
 
@@ -84,10 +85,10 @@ void HSVCircle::convert(std::array<float, 3>& dest, const std::array<float, 3>& 
     {
         float h = hsv[0] * 6.0f;
         if(h == 6.0f) h = 0;
-        float i = static_cast<int>(h);
-        float var_1 = hsv[2] * (1 - hsv[1]);
-        float var_2 = hsv[2] * (1 - hsv[1] * (h - i));
-        float var_3 = hsv[2] * (1 - hsv[1] * (1 - (h - i)));
+        int i = static_cast<int>(h);
+        float var_1 = hsv[2] * (1.0f - hsv[1]);
+        float var_2 = hsv[2] * (1.0f - hsv[1] * (h - static_cast<float>(i)));
+        float var_3 = hsv[2] * (1.0f - hsv[1] * (1.0f - (h - static_cast<float>(i))));
 
         float var_r;
         float var_g;
