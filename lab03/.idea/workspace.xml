@@ -15,7 +15,7 @@
       <change beforePath="$PROJECT_DIR$/../lab02/src/circles/hsl_circle.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/circles/hsl_circle.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab02/src/circles/hsv_circle.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../lab02/src/circles/hsv_circle.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphics/frame.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/frame.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="2" selection-start-column="2" selection-end-column="2" />
+            <state relative-caret-position="22">
+              <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -205,18 +205,18 @@
       <workItem from="1553195476792" duration="5563000" />
       <workItem from="1553202405542" duration="962000" />
       <workItem from="1553434518240" duration="10908000" />
-      <workItem from="1553535929058" duration="10299000" />
+      <workItem from="1553535929058" duration="10332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33279000" />
+    <option name="totallyTimeSpent" value="33312000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3840" y="286" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1189968" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1189968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -228,7 +228,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.40430108" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.26774195" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.49892473" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32903227" />
@@ -354,8 +354,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        <state relative-caret-position="22">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>
