@@ -181,13 +181,13 @@ void MyFrame::Draw()
 
         gcdc.SetBrush(wxBrush(wxColour(*wxWHITE)));
         gcdc.SetPen(wxPen(wxColour(*wxWHITE)));
-        gcdc.DrawCircle(80, 80, 30);
+        gcdc.DrawCircle(80, 80, 40);
 
         gcdc.SetBrush(wxBrush(wxColour(*wxBLACK)));
         gcdc.SetPen(wxPen(wxColour(*wxBLACK)));
-        gcdc.DrawCircle(110, 95, 5);
+        gcdc.DrawCircle(115, 100, 3);
 
-        gcdc.DrawLine(100, 105, 110, 110);
+        gcdc.DrawLine(105, 110, 115, 115);
     } else
     {
         gcdc.SetBrush(wxBrush(wxColour(*wxYELLOW)));
