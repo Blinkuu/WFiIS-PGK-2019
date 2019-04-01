@@ -60,7 +60,8 @@ void ChartClass::Draw(wxDC* dc, int w, int h)
 void ChartClass::DrawCoordinateSystem(wxDC* dc, int w, int h) const
 {
     dc->SetPen(wxPen(wxColour(*wxBLUE)));
-
+    this->w = w;
+    this->h = h;
     double xStart = cfg->Get_x_start();
     double xStop = cfg->Get_x_stop();
 
@@ -88,8 +89,6 @@ void ChartClass::DrawCoordinateSystem(wxDC* dc, int w, int h) const
         model = model * GetToScreenMatrix(w, h);
     }
 
-    model = model * GetScaleMatrix(1.0f, -1.0f);
-
     line2d(dc, model, xStart, 0, xStop, 0);
     line2d(dc, model, 0, Get_Y_min(), 0, Get_Y_max());
 
@@ -99,8 +98,8 @@ void ChartClass::DrawCoordinateSystem(wxDC* dc, int w, int h) const
     yLegend.Set(0, 0.2);
     xLegend = model * xLegend;
     yLegend = model * yLegend;
-    dc->DrawRotatedText("0.00", wxPoint(xLegend.GetX(), xLegend.GetY()), cfg->Get_Alpha());
-    dc->DrawRotatedText("0.00", wxPoint(yLegend.GetX(), yLegend.GetY()), cfg->Get_Alpha());
+    dc->DrawRotatedText("0.00", wxPoint(xLegend.GetX(), h - xLegend.GetY()), cfg->Get_Alpha());
+    dc->DrawRotatedText("0.00", wxPoint(yLegend.GetX(), h - yLegend.GetY()), cfg->Get_Alpha());
 
     // X axis
     Vector xAxisPositive, xAxisNegative;
@@ -110,9 +109,9 @@ void ChartClass::DrawCoordinateSystem(wxDC* dc, int w, int h) const
     line2d(dc, model, xAxisNegative.GetX(), -0.05, xAxisNegative.GetX(), 0.05);
     xAxisPositive = model * xAxisPositive;
     xAxisNegative = model * xAxisNegative;
-    dc->DrawRotatedText(std::to_string(xStop / 2.0), wxPoint(xAxisPositive.GetX(), xAxisPositive.GetY()),
+    dc->DrawRotatedText(std::to_string(xStop / 2.0), wxPoint(xAxisPositive.GetX(), h - xAxisPositive.GetY()),
                         cfg->Get_Alpha());
-    dc->DrawRotatedText(std::to_string(xStart / 2.0), wxPoint(xAxisNegative.GetX(), xAxisNegative.GetY()),
+    dc->DrawRotatedText(std::to_string(xStart / 2.0), wxPoint(xAxisNegative.GetX(), h - xAxisNegative.GetY()),
                         cfg->Get_Alpha());
 
     // Y axis
@@ -123,9 +122,9 @@ void ChartClass::DrawCoordinateSystem(wxDC* dc, int w, int h) const
     line2d(dc, model, -0.05, yAxisNegative.GetY(), 0.05, yAxisNegative.GetY());
     yAxisPositive = model * yAxisPositive;
     yAxisNegative = model * yAxisNegative;
-    dc->DrawRotatedText(std::to_string(Get_Y_max() / 2.0), wxPoint(yAxisPositive.GetX(), yAxisPositive.GetY()),
+    dc->DrawRotatedText(std::to_string(Get_Y_max() / 2.0), wxPoint(yAxisPositive.GetX(), h - yAxisPositive.GetY()),
                         cfg->Get_Alpha());
-    dc->DrawRotatedText(std::to_string(Get_Y_min() / 2.0), wxPoint(yAxisNegative.GetX(), yAxisNegative.GetY()),
+    dc->DrawRotatedText(std::to_string(Get_Y_min() / 2.0), wxPoint(yAxisNegative.GetX(), h - yAxisNegative.GetY()),
                         cfg->Get_Alpha());
 
     // Arrows on axis
@@ -155,7 +154,7 @@ void ChartClass::line2d(wxDC* dc, const Matrix& mat, double x1, double y1, doubl
     p1 = mat * p1;
     p2 = mat * p2;
 
-    dc->DrawLine(wxPoint(p1.GetX(), p1.GetY()), wxPoint(p2.GetX(), p2.GetY()));
+    dc->DrawLine(wxPoint(p1.GetX(), h - p1.GetY()), wxPoint(p2.GetX(), h - p2.GetY()));
 }
 
 double ChartClass::Get_Y_min() const
@@ -182,7 +181,7 @@ Matrix ChartClass::GetIdentityMatrix() const
 Matrix ChartClass::GetRotationMatrix(float angle) const
 {
     Matrix result;
-    angle = -M_PI * angle / 180.0f;
+    angle = M_PI * angle / 180.0f;
     result.data[0][0] = cosf(angle);
     result.data[1][0] = sinf(angle);
     result.data[0][1] = -sinf(angle);
@@ -206,9 +205,9 @@ Matrix ChartClass::GetToScreenMatrix(double width, double height) const
     double s_x = width / (cfg->Get_x1() - cfg->Get_x0()), s_y = height / (cfg->Get_y1() - cfg->Get_y0());
     Matrix m;
     m.data[0][0] = s_x;
-    m.data[0][2] = - s_x * cfg->Get_x0();
+    m.data[0][2] = -s_x * cfg->Get_x0();
     m.data[1][1] = s_y;
-    m.data[1][2] = - s_y * cfg->Get_y0();
+    m.data[1][2] = -s_y * cfg->Get_y0();
     return m;
 }
 

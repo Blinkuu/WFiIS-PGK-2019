@@ -33,6 +33,9 @@ public:
     double Get_Y_min() const; // zwraca y_min
     double Get_Y_max() const; // zwraca y_max
     void Draw(wxDC *dc, int w, int h);  // rysuje wykres
+
+private:
+    mutable int w, h;
 };
 
 #endif
