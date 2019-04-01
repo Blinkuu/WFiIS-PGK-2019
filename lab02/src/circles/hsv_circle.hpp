@@ -5,6 +5,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <array>
 #include "circle.hpp"
 
 class HSVCircle : public Circle

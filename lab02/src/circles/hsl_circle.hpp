@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <cmath>
+#include <array>
 #include <SFML/Graphics.hpp>
 #include "circle.hpp"
 
